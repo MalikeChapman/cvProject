@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main{
+  background-color: rgb(247, 243, 243);
+  width: 100%;
+  height: 100vh;
+  border: 2px solid black;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+ 
+}
+
+.headerdiv{
+border-bottom: 1px solid black;
+width: 100%;
+height: 12vh;
+background-color: aliceblue;
+}
+.headerh1{
+  width: 70%;
+  text-align: center;
+  font-size: 3rem;
+  margin: 2rem auto;
+}
+.overviewdiv {
+  position: relative;
+  padding: 2rem;
+  width: 100%;
+  height: 20vh;
+  border-bottom: 1px solid black;
+  
+}
+.overviewform{
+  height: 100%;
+}
+.overviewobjective{
+  display: block;
+  width: 50%;
+  height: 50%;
+  margin: 2rem auto;
+  resize: none;
+}
+.divtitle{
+  position: absolute;
+  top: -.5rem;
+  left: .8rem;
+  font-size: 2rem;
+  margin: 1rem 0rem;
+}
+.educationdiv{
+  position: relative;
+  border-bottom: 1px solid black;
+  width: 100%;
+  min-height: 10vh;
+}
+.workhistorydiv{
+  position: relative;
+  border-bottom: 1px solid black;
+  width: 100%;
+  min-height: 10vh;
+}
+.certificationdiv{
+  position: relative;
+  border-bottom: 1px solid black;
+  width: 100%;
+  min-height: 10vh;
+}
+.addbtn{
+  position: absolute;
+  top: 0;
+  right: 1rem;
+}
+.personaldiv{
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  border-right: 1px solid black;
+}
+.personalform{
+  margin: 2.5rem auto;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-start;
+}
+.personalforminput{
+  clear: right;
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+}
+.personallabel{
+  font-size: 1.8rem;
+}
+.personalskill{
+  display: grid;
+  grid-template-rows: min-content;
+  grid-template-columns: 60% 30%;
+  width: 100%;
+  position: relative;
+  align-items: flex-start;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  grid-gap: 2rem;
 }
-
-.App-link {
-  color: #61dafb;
+.skills{
+  height: 100%;
 }
+#skillsid{
+  margin: 1rem;
+}
+.listholder {
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
