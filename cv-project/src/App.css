@@ -109,6 +109,14 @@ background-color: aliceblue;
 #skillsid{
   margin: 1rem;
 }
-.listholder {
+.skillsform{
+  height: 75%;
+  text-align: center;
 
+}
+.listholder {
+  resize: none;
+  height: 60%;
+  width: 70%;
+  margin: 1rem auto;
 }
