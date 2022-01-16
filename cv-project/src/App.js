@@ -21,6 +21,7 @@ export default class App extends Component{
       <WorkHistory/>
       <Certifications/>
       <PersonalSkill/>
+      <button>Generate</button>
     </div>)
   }
 }
