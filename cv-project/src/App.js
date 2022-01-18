@@ -8,20 +8,24 @@ import { Certifications } from './components/Certifications';
 import { Education } from './components/Education';
 import { PersonalInfo } from './components/PersonalInfo';
 import { PersonalSkill } from './components/PersonalSkill';
+import { Form } from './components/Form';
 
 export default class App extends Component{
   constructor(props){
     super(props)
+    this.state = {
+      overview: '',
+      education: [],
+      workhistory: [],
+      certifications: [],
+      personal: []
+    }
   }
   render(){
     return (<div className="main">
       <Header/>
-      <Overview/>
-      <Education/>
-      <WorkHistory/>
-      <Certifications/>
-      <PersonalSkill/>
-      <button>Generate</button>
+     <Form/>
+      <button id="generatebtn">Generate</button>
     </div>)
   }
 }

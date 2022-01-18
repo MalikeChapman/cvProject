@@ -3,14 +3,25 @@ import React, {Component} from "react";
 export class Overview extends Component{
     constructor(props){
         super(props)
+        this.state = {
+            overview: ''
+        };
+        this.handleOnChange = this.handleOnChange.bind(this);
+        
     }
+    
+
     render(){
         return(<div className="overviewdiv">
             <h3 className="divtitle">Objective</h3>
-            <form className="overviewform">
+            
                 <textarea placeholder="Enter Objective Description here" 
-                className="overviewobjective" ></textarea>
-            </form>
+                className="overviewobjective" required onChange={this.handleOnChange}
+                value={this.state.overview}></textarea>
+            
         </div>)
+    }
+    handleOnChange(event){
+        this.setState({overview: event.target.value});
     }
 }
