@@ -79,10 +79,11 @@ background-color: aliceblue;
 }
 .personaldiv{
   position: relative;
-  width: 100%;
+  width: 50%;
   height: fit-content;
-  display: grid;
-  grid-template-columns: 50% 50%;
+  /* display: grid;
+  grid-template-columns: 50% 50%; */
+  float: left;
 }
 .personalform{
   margin: 2.5rem auto;
@@ -102,11 +103,7 @@ background-color: aliceblue;
   font-size: 1.8rem;
 }
 .personalskill{
- width: 100%;
- height: 100%;
- display: grid;
- grid-template-columns: auto auto;
- grid-template-rows: 30% auto;
+ 
 }
 .skills{
   height: 100%;
@@ -120,7 +117,6 @@ background-color: aliceblue;
 
 }
 .listholder {
-  resize: none;
   height: 60%;
   width: 70%;
   margin: 1rem auto;
@@ -151,4 +147,36 @@ margin: 1rem;
 .worklabel
 {
   font-size: 1.6rem;
+}
+.skilldiv
+{
+  width: 50%;
+ height: 90%;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+float: left;
+}
+.personalContainer
+{
+  display: flex;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.personalContainer.child
+{
+  flex: 1;
+}
+
+.submitBtn
+{
+width: 30%;
+margin: 1rem auto;
+cursor: pointer;
+}
+.submitBtn:hover
+{
+ transform: scale(1.2);
+ 
 }

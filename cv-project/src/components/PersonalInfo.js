@@ -20,9 +20,7 @@ export class PersonalInfo extends Component{
                 <label htmlFor="phoneid" className="personallabel">Phone Number:</label>
                 <input type="tel" id="phoneid" className="personalforminput" required></input>
             </div>
-                <div>
-                    <PersonalSkill/>
-                </div>
+                
         </div>)
     }
 }

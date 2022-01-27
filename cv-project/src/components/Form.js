@@ -14,24 +14,24 @@ export class Form extends Component
         this.state = {
             numOfEducation: 1,
             numOfJobs: 1,
-            job: [],
-            education: [],
-            name: ""
+            job: [<WorkHistory key={0} number={1} jobDelete={this.deleteJob}/>],
+            education: [<Education key={0} number={1} eduDelete = {this.deleteEducation}/>],
+            name: "",
+            skill: [<PersonalSkill key ={0} skillRemove={this.skillDelete}/>],
+            numOfSkills: 1
         }
         this.addEducation = this.addEducation.bind(this);
         this.addJob = this.addJob.bind(this);
+        this.addSkill = this.addSkill.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
         this.deleteEducation = this.deleteEducation.bind(this);
         this.deleteJob = this.deleteJob.bind(this);
+        this.skillDelete = this.skillDelete.bind(this);
+        this.generateResume = this.generateResume.bind(this);
     }
     render()
     {
-        const educations = [];
-        for(let i = 0; i < this.state.numOfEducation; i++)
-        {
-            educations.push(<Education key={i} number={i + 1} eduDelete = {this.deleteEducation}/>);
-        }
         const educationStyle = {
             borderBottom: "1px solid black",
             width: "100%",
@@ -40,11 +40,6 @@ export class Form extends Component
             maxHeight: "30vh",
             overflowY: "auto"
         }
-        const jobs = [];
-        for(let i = 0; i < this.state.numOfJobs; i++)
-        {
-            jobs.push(<WorkHistory key={i} number={i + 1} jobDelete={this.deleteJob}/>);
-        }
         return (
         <form className="mainform" onSubmit={this.handleFormSubmit} onChange={this.handleFormChange}>
             <Overview/>
@@ -52,27 +47,38 @@ export class Form extends Component
             <button className="addbtn" onClick={this.addEducation}>add</button>
             </div>
             <div style={educationStyle}>
-            {educations}
+            {this.state.education}
             </div>   
             <div className="ed">
             <button className="addbtn" id="addJob" onClick={this.addJob}>add</button>
             </div>  
             <div style={educationStyle}>
-                {jobs}
+                {this.state.job}
             </div>
+            <div className="ed">
+                <button className="addbtn" id="addSkill" onClick={this.addSkill}>add</button>
+            </div>
+            <div className="personalContainer">
             <PersonalInfo/>
+            <div className="skilldiv">
+                {this.state.skill}
+            </div>
+            </div>
+            <input type="submit" className="submitBtn" onClick={this.generateResume}></input>
         </form>)
     }
     addJob()
     {
         this.setState({
-            numOfJobs: this.state.numOfJobs + 1
+            numOfJobs: this.state.numOfJobs + 1,
+            job: this.state.job.concat(<WorkHistory key={this.state.numOfJobs} number={this.state.numOfJobs + 1} jobDelete={this.deleteJob}/>)
         })
     }
     addEducation(item)
     {
         this.setState({
-            numOfEducation: this.state.numOfEducation + 1
+            numOfEducation: this.state.numOfEducation + 1,
+            education: this.state.education.concat(<Education key={this.state.numOfEducation} number={this.state.numOfEducation + 1} eduDelete = {this.deleteEducation}/>)
         })
     }
     deleteEducation(index)
@@ -103,5 +109,29 @@ export class Form extends Component
         this.setState({
           [name]: value
         });
+    }
+    addSkill()
+    {
+        this.setState(
+            {
+                numOfSkills: this.state.numOfSkills + 1,
+                skill: this.state.skill.concat(<PersonalSkill key={this.state.numOfSkills} skillRemove={this.skillDelete}/>)
+            }
+        )
+    }
+    skillDelete(index)
+    {
+        this.setState({
+            skills: this.state.skill.splice(index, 1),
+            numOfSkills: this.state.numOfSkills - 1
+        })
+
+    }
+    generateResume()
+    {
+        console.log(this.state.skill);
+        console.log(this.state.job);
+        console.log(this.state.education);
+
     }
 }
