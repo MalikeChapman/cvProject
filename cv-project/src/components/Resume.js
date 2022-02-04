@@ -29,10 +29,10 @@ export class Resume extends Component
                 <div className="resumepersonalinfo">
                     <h3 className="subsection">Personal Info</h3>
                     <ul className="listholder">
-                        <li key={1} classname="listitem">Phone</li>
-                        <li key={2} classname="listitem">{phone}</li>
-                        <li key={3} classname="listitem">Email</li>
-                        <li key={4} classname="listitem">{email}</li>
+                        <li key={1} className="listitem">Phone</li>
+                        <li key={2} className="listitem">{phone}</li>
+                        <li key={3} className="listitem">Email</li>
+                        <li key={4} className="listitem">{email}</li>
                     </ul>
                 </div>
                 <div className="resumeskilldiv">
