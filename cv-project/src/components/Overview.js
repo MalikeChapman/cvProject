@@ -17,11 +17,12 @@ export class Overview extends Component{
             
                 <textarea placeholder="Enter Objective Description here" 
                 className="overviewobjective" required onChange={this.handleOnChange}
-                value={this.state.overview}></textarea>
-            
+                value={this.state.overview}
+                minLength={100} maxLength={300}></textarea>
         </div>)
     }
     handleOnChange(event){
         this.setState({overview: event.target.value});
+        this.props.getOverview(event.target.value);
     }
 }

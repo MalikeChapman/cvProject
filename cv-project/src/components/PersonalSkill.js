@@ -34,7 +34,7 @@ export class PersonalSkill extends Component{
        
         return(
         <div className="personalskill">
-                        <input type="text" id="skillsid" placeholder="Enter Skill here" onChange={this.handleChange}></input>
+                        <input type="text" id="skillsid" placeholder="Enter Skill here" onChange={this.handleChange} required></input>
                         <button id="deleteSkillBtn" onClick={this.deleteSkill}>Delete skill</button>
         </div>)
     }

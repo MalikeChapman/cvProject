@@ -12,13 +12,37 @@ export class Form extends Component
     {
         super(props)
         this.state = {
-            numOfEducation: 1,
-            numOfJobs: 1,
-            job: [<WorkHistory key={0} number={1} jobDelete={this.deleteJob}/>],
-            education: [<Education key={0} number={1} eduDelete = {this.deleteEducation}/>],
+            maxJobs: 5,
+            maxSkills: 10,
+            maxEducation: 3,
+            numOfEducation: 0,
+            numOfJobs: 0,
+            job: [],
+            education: [],
             name: "",
-            skill: [<PersonalSkill key ={0} skillRemove={this.skillDelete}/>],
-            numOfSkills: 1
+            skill: [],
+            numOfSkills: 1,
+            overview: "",
+            personal: {
+                fname: "",
+                lname: "",
+                email: "",
+                phone: ""
+            }
+        }
+        this.onTrigger = (event) =>
+        {
+            this.props.parentSate();
+            const data = {
+                job: this.state.job,
+                education: this.state.education,
+                skill: this.state.skill,
+                overview: this.state.overview  
+              }
+              console.log(data + " form");
+              this.props.parentState(data);
+      
+            event.preventDefault();
         }
         this.addEducation = this.addEducation.bind(this);
         this.addJob = this.addJob.bind(this);
@@ -29,6 +53,9 @@ export class Form extends Component
         this.deleteJob = this.deleteJob.bind(this);
         this.skillDelete = this.skillDelete.bind(this);
         this.generateResume = this.generateResume.bind(this);
+        this.getOverview = this.getOverview.bind(this);
+        this.onTrigger = this.onTrigger.bind(this);
+        this.updatepersonal = this.updatepersonal.bind(this);
     }
     render()
     {
@@ -42,7 +69,7 @@ export class Form extends Component
         }
         return (
         <form className="mainform" onSubmit={this.handleFormSubmit} onChange={this.handleFormChange}>
-            <Overview/>
+            <Overview getOverview={this.getOverview}/>
             <div className="ed">
             <button className="addbtn" onClick={this.addEducation}>add</button>
             </div>
@@ -59,7 +86,7 @@ export class Form extends Component
                 <button className="addbtn" id="addSkill" onClick={this.addSkill}>add</button>
             </div>
             <div className="personalContainer">
-            <PersonalInfo/>
+            <PersonalInfo valueChange={this.updatepersonal}/>
             <div className="skilldiv">
                 {this.state.skill}
             </div>
@@ -67,8 +94,21 @@ export class Form extends Component
             <input type="submit" className="submitBtn" onClick={this.generateResume}></input>
         </form>)
     }
+    getOverview(text)
+    {
+        this.setState(
+            {
+                overview: text
+            }
+        )
+    }
     addJob()
     {
+        if(this.state.numOfJobs >= this.state.maxJobs)
+        {
+            alert(`You can only put ${this.state.maxJobs} jobs max!`);
+            return;
+        }
         this.setState({
             numOfJobs: this.state.numOfJobs + 1,
             job: this.state.job.concat(<WorkHistory key={this.state.numOfJobs} number={this.state.numOfJobs + 1} jobDelete={this.deleteJob}/>)
@@ -76,6 +116,11 @@ export class Form extends Component
     }
     addEducation(item)
     {
+        if(this.state.numOfEducation >= this.state.maxEducation)
+        {
+            alert(`You can only put ${this.state.maxEducation} educations max!`);
+            return;
+        }
         this.setState({
             numOfEducation: this.state.numOfEducation + 1,
             education: this.state.education.concat(<Education key={this.state.numOfEducation} number={this.state.numOfEducation + 1} eduDelete = {this.deleteEducation}/>)
@@ -83,20 +128,38 @@ export class Form extends Component
     }
     deleteEducation(index)
     {
+        
+        const newArray = Array.from(this.state.education);
+        newArray.splice(index, 1);
+
         this.setState({
-            education: this.state.education.splice(index, 1),
+            education: newArray,
             numOfEducation: this.state.numOfEducation - 1
         })
     }
     deleteJob(index)
     {
+        const newArray = Array.from(this.state.job);
+        newArray.splice(index, 1);
+
         this.setState({
-            jobs: this.state.job.splice(index, 1),
+            job: newArray,
             numOfJobs: this.state.numOfJobs - 1
         })
     }
+
     handleFormSubmit(event)
     {
+        const data = {
+            job: this.state.job,
+            education: this.state.education,
+            skill: this.state.skill,
+            overview: this.state.overview,
+            personal: this.state.personal  
+          }
+          console.log(data + " form");
+          this.props.parentState(data);
+  
         event.preventDefault();
         
     }
@@ -112,26 +175,79 @@ export class Form extends Component
     }
     addSkill()
     {
+        if(this.state.numOfSkills >= this.state.maxSkills)
+        {
+            alert(`You can only put ${this.state.maxSkills} skills max!`);
+        }
         this.setState(
             {
                 numOfSkills: this.state.numOfSkills + 1,
-                skill: this.state.skill.concat(<PersonalSkill key={this.state.numOfSkills} skillRemove={this.skillDelete}/>)
+                skill: this.state.skill.concat(<PersonalSkill key={this.state.numOfSkills} skillRemove={this.skillDelete} value={""}/>)
             }
         )
     }
     skillDelete(index)
     {
+        const newArray = Array.from(this.state.skill);
+        newArray.splice(index, 1);
         this.setState({
-            skills: this.state.skill.splice(index, 1),
+            skills: newArray,
             numOfSkills: this.state.numOfSkills - 1
         })
 
     }
+    updatepersonal(event)
+    {
+        switch(event.target.id)
+        {
+            case "fnameid":
+                {
+                    const personal = { ...this.state.personal, fname: event.target.value}
+                    this.setState(
+                        {
+                            personal: personal
+                        }
+                    )
+                    break;
+                }
+            case "lnameid":
+                {
+                    const personal = { ...this.state.personal, lname: event.target.value}
+                    this.setState(
+                        {
+                            personal: personal
+                        }
+                    )
+
+                    break;
+                }
+            case "emailid":
+                {
+                    const personal = { ...this.state.personal, email: event.target.value}
+                    this.setState(
+                        {
+                            personal: personal
+                        }
+                    )
+
+                    break;
+                }
+                case "phoneid":
+                    {
+                        const personal = { ...this.state.personal, phone: event.target.value}
+                        this.setState(
+                            {
+                                personal: personal
+                            }
+                        )
+    
+                        break;
+                    }
+            default:
+        }
+    }
     generateResume()
     {
-        console.log(this.state.skill);
-        console.log(this.state.job);
-        console.log(this.state.education);
-
+        
     }
 }

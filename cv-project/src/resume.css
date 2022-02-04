@@ -1,0 +1,70 @@
+.resumepersonaldiv
+{
+  grid-column: 1;
+  grid-row: 1 / 4;
+  background-color: blue;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+}
+
+.resumeoverviewdiv
+{
+    grid-column: 2;
+    grid-row: 1;
+    border-bottom: 1px solid black;
+    background-color: blanchedalmond;
+
+}
+.resumeeducationdiv
+{
+    grid-column: 2;
+    grid-row: 2;
+    border-bottom: 1px solid black;
+    background-color: blueviolet;
+}
+.resumeworkhistorydiv
+{
+    grid-column: 2;
+    grid-row: 3;
+    background-color: darkcyan;
+}
+#overview
+{
+    width: 90%;
+    height: 90%;
+    margin: 1.2rem;
+    font-size: 1.7rem;
+}
+.personalname
+{
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.resumepersonalinfo{
+    width: 100%;
+    flex-basis: 40%;
+}
+.subsection
+{
+    width: 100%;
+    background-color: rgb(114, 114, 250);
+    border-top: rgb(202, 200, 200);
+    border-bottom: rgb(202, 200, 200);
+    font-size: 2rem;
+}
+.listholder 
+{
+    height: 85%;
+    width: 80%;
+    list-style-type: none;
+}
+.listholder li
+{
+    font-size: 1.5rem;
+
+}

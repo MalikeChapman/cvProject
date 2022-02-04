@@ -19,9 +19,8 @@ export class WorkHistory extends Component{
     }
     addBullet(event)
     {
-        console.log(this.bulletRef);
         this.setState({
-            bulletArray: this.state.bulletArray.push(this.bulletRef.current.value),
+            bulletArray: this.state.bulletArray.concat(this.bulletRef.current.value),
             
         })
        this.bulletRef.current.value = '';
